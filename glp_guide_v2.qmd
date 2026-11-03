@@ -29,9 +29,39 @@ format:
     <a href="#finding-an-apartment">Apartments</a>
     <a href="#parking-and-transportation">Transportation</a>
     <a href="#weather">Weather</a>
-    <a href="#license">License</a>
     <a href="#pmger-recommendations">Recommendations</a>
-    <a href="#helpful-resources">Resources</a>
+    <details class="nav-resources-dropdown">
+  <summary>
+    <span>Resources</span>
+    <span class="nav-resources-chevron">▼</span>
+  </summary>
+
+  <div class="nav-resources-menu">
+    <a href="https://www.powertochoose.org/" target="_blank" rel="noopener noreferrer">
+      <span class="nav-resource-icon">⚡</span>
+      <span class="nav-resource-name">PowerToChoose</span>
+      <span class="nav-resource-external">↗</span>
+    </a>
+
+    <a href="https://www.ntta.org/" target="_blank" rel="noopener noreferrer">
+      <span class="nav-resource-icon">🚗</span>
+      <span class="nav-resource-name">NTTA TollTag</span>
+      <span class="nav-resource-external">↗</span>
+    </a>
+
+    <a href="https://www.dart.org/" target="_blank" rel="noopener noreferrer">
+      <span class="nav-resource-icon">🚊</span>
+      <span class="nav-resource-name">DART</span>
+      <span class="nav-resource-external">↗</span>
+    </a>
+
+    <a href="https://www.dps.texas.gov/" target="_blank" rel="noopener noreferrer">
+      <span class="nav-resource-icon">🪪</span>
+      <span class="nav-resource-name">Texas DPS</span>
+      <span class="nav-resource-external">↗</span>
+    </a>
+  </div>
+</details>
 
     <button
       class="nav-search-toggle"
@@ -39,26 +69,54 @@ format:
       type="button"
       aria-label="Search guide"
       aria-expanded="false"
+      aria-controls="nav-search-panel"
     >
-      🔍
+      <span aria-hidden="true">🔍</span>
     </button>
   </div>
 </nav>
 
-<div class="nav-search-panel" id="nav-search-panel" hidden>
+<div
+  class="nav-search-panel"
+  id="nav-search-panel"
+  role="dialog"
+  aria-labelledby="nav-search-title"
+  hidden
+>
   <div class="nav-search-inner">
-    <input
-      id="nav-search-input"
-      type="search"
-      placeholder="Ask a question, like 'How do I register my car?'"
-      autocomplete="off"
-      aria-label="Search the Dallas guide"
-    >
+    <div class="nav-search-heading">
+      <div>
+        <h2 id="nav-search-title">Search the Dallas Guide</h2>
+        <p>Search neighborhoods, moving tasks, transportation, local tips, and more.</p>
+      </div>
+      <button class="nav-search-close" id="nav-search-close" type="button" aria-label="Close search">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
 
-    <div
-      id="nav-search-results"
-      class="nav-search-results"
-    ></div>
+    <div class="nav-search-field">
+      <span class="nav-search-field-icon" aria-hidden="true">🔍</span>
+      <input
+        id="nav-search-input"
+        type="search"
+        placeholder="Try ‘best neighborhoods’ or ‘register my car’"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Search the Dallas guide"
+        aria-controls="nav-search-results"
+        aria-autocomplete="list"
+      >
+      <button class="nav-search-clear" id="nav-search-clear" type="button" aria-label="Clear search" hidden>
+        Clear
+      </button>
+    </div>
+
+    <div class="nav-search-meta">
+      <span>Use <kbd>↑</kbd> <kbd>↓</kbd> to browse and <kbd>Enter</kbd> to open</span>
+      <span class="nav-search-shortcut"><kbd>/</kbd> to search</span>
+    </div>
+
+    <div id="nav-search-results" class="nav-search-results" aria-live="polite"></div>
   </div>
 </div>
 ```
@@ -93,22 +151,40 @@ format:
         <div class="welcome-meta-item">
           <span class="welcome-meta-label">Proj. Start Date</span>
           <span class="welcome-meta-value">
-            Monday, June 7th, 2027
+            Monday, January 11th, 2027
           </span>
         </div>
 
-        <div class="welcome-meta-item">
-          <span class="welcome-meta-label">Guide Topics</span>
-          <span class="welcome-meta-value">
-            Neighborhoods<br>
-            Apartments<br>
-            Transportation<br>
-            Weather<br>
-            Driver's License & Registration<br>
-            PMGer Recommendations<br>
-            Helpful Resources
-          </span>
-        </div>
+        <section class="welcome-meta-item welcome-contacts" id="key-contacts" aria-labelledby="key-contacts-title">
+          <h2 class="welcome-meta-label" id="key-contacts-title">Key Contacts</h2>
+          <!-- Demo addresses: replace with confirmed PMG aliases before sharing. -->
+          <ul class="welcome-contact-list">
+            <li class="welcome-contact">
+              <button class="welcome-contact-name" type="button" aria-expanded="false" aria-controls="contact-onboarding">Onboarding</button>
+              <div class="welcome-contact-popover" id="contact-onboarding" hidden>
+                <strong class="welcome-contact-purpose">Getting set up</strong>
+                <a class="welcome-contact-email" href="mailto:onboarding@example.com">onboarding@example.com</a>
+              <p>Reach out about new hire paperwork, onboarding tasks, and first-day logistics.</p>
+              </div>
+            </li>
+            <li class="welcome-contact">
+              <button class="welcome-contact-name" type="button" aria-expanded="false" aria-controls="contact-earlycareers">Early Careers</button>
+              <div class="welcome-contact-popover" id="contact-earlycareers" hidden>
+                <strong class="welcome-contact-purpose">Your GLP experience</strong>
+                <a class="welcome-contact-email" href="mailto:earlycareers@example.com">earlycareers@example.com</a>
+              <p>Reach out about the GLP program, cohort activities, training, and development.</p>
+              </div>
+            </li>
+            <li class="welcome-contact">
+              <button class="welcome-contact-name" type="button" aria-expanded="false" aria-controls="contact-campusrecruiting">Campus Recruiting</button>
+              <div class="welcome-contact-popover" id="contact-campusrecruiting" hidden>
+                <strong class="welcome-contact-purpose">The hiring process</strong>
+                <a class="welcome-contact-email" href="mailto:campusrecruiting@example.com">campusrecruiting@example.com</a>
+              <p>Reach out about applications, interviews, offers, and campus recruiting events.</p>
+              </div>
+            </li>
+          </ul>
+        </section>
 
       </div>
 
@@ -128,30 +204,81 @@ format:
   </a>
 </div>
 </section>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const contacts = Array.from(document.querySelectorAll(".welcome-contact"));
+
+  function setOpen(contact, open) {
+    contact.querySelector(".welcome-contact-name").setAttribute("aria-expanded", String(open));
+    contact.querySelector(".welcome-contact-popover").hidden = !open;
+  }
+
+  contacts.forEach(function(contact) {
+    const button = contact.querySelector(".welcome-contact-name");
+    function show() {
+      contacts.forEach(function(other) { setOpen(other, other === contact); });
+    }
+    contact.addEventListener("pointerenter", function(event) {
+      if (event.pointerType === "mouse") show();
+    });
+    contact.addEventListener("pointerleave", function() {
+      if (!contact.contains(document.activeElement)) setOpen(contact, false);
+    });
+    contact.addEventListener("focusin", show);
+    contact.addEventListener("focusout", function(event) {
+      if (!contact.contains(event.relatedTarget)) setOpen(contact, false);
+    });
+    button.addEventListener("click", show);
+    contact.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        button.focus();
+        setOpen(contact, false);
+        event.stopPropagation();
+      }
+    });
+  });
+  document.addEventListener("pointerdown", function(event) {
+    contacts.forEach(function(contact) {
+      if (!contact.contains(event.target)) setOpen(contact, false);
+    });
+  });
+});
+</script>
 ```
 
 ::: {.section-light}
+# Easter Egg
 
 # Finding a Place to Live {#finding-a-place-to-live}
 
 Finding an apartment in Dallas is fairly straightforward, but prices, incentives, and utility costs can vary significantly between neighborhoods and buildings. The information below covers where to search, common move-in specials, electricity, parking, and the fees you'll likely encounter before signing a lease.
 
 ::: {.panel-tabset}
-## **Neighborhoods** {#neighborhood-options}
-
-Choosing where to live can have a major impact on your commute, budget, and day-to-day experience in Dallas. The neighborhoods below are popular starting points for incoming GLPers.
+## **Local Options** {#local-options}
 
 ### Local Options
-Add description for options that are closer to the options
+These neighborhoods are great options if you want to live closer to the office, keep your commute short, and enjoy easy access to Dallas restaurants, shops, and things to do. The monthly rent prices shown are estimated neighborhood averages to help you compare options. Actual rent will vary by building, apartment size, amenities, availability, and move-in specials.
 
 ```{=html}
+<div class="neighborhood-rent-section">
+  <div class="bedroom-selector" role="group" aria-label="Choose apartment size for local neighborhood prices">
+    <div class="bedroom-selector-copy">
+      <strong>Estimated Monthly Rent</strong>
+      <span class="bedroom-selector-status" aria-live="polite">Showing 1 Bedroom Prices</span>
+    </div>
+    <div class="bedroom-selector-buttons">
+      <button type="button" class="bedroom-selector-button is-active" data-bedroom="1" aria-pressed="true">1 Bedroom</button>
+      <button type="button" class="bedroom-selector-button" data-bedroom="2" aria-pressed="false">2 Bedrooms</button>
+    </div>
+  </div>
+
 <div class="neighborhood-grid">
 
   <article class="neighborhood-card">
     <h3>📍 Uptown</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚶   Walk to PMG</span>
+      <span class="commute">🚶  20-30 min</span>
     </div>
 
     <div class="tags">
@@ -165,7 +292,7 @@ Add description for options that are closer to the options
       The most popular choice for new GLPers.
     </p>
 
-    <div class="rent">$2,400–$2,800+</div>
+    <div class="rent" data-one-bedroom="2250" data-two-bedroom="3200" data-one-bedroom-prefix="~" data-two-bedroom-prefix="~" data-two-bedroom-suffix=""></div>
 
     <a href="https://www.google.com/search?q=uptown+dallas" target="_blank">
       View on Google Maps →
@@ -176,7 +303,7 @@ Add description for options that are closer to the options
     <h3>📍 Knox–Henderson</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗   10 min</span>
+      <span class="commute">🚗   15 min</span>
     </div>
 
     <div class="tags">
@@ -190,7 +317,7 @@ Add description for options that are closer to the options
       Great option for client dinners and weekends.
     </p>
 
-    <div class="rent">~$1,800</div>
+    <div class="rent" data-one-bedroom="1750" data-two-bedroom="2550" data-one-bedroom-prefix="~" data-two-bedroom-prefix="~"></div>
 
     <a href="https://www.google.com/search?q=knox+henderson+dallas" target="_blank">
       View on Google Maps →
@@ -201,7 +328,7 @@ Add description for options that are closer to the options
     <h3>📍 Oak Lawn</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗   8 min</span>
+      <span class="commute">🚗   12 min</span>
     </div>
 
     <div class="tags">
@@ -215,7 +342,7 @@ Add description for options that are closer to the options
       Love Field and the Medical District.
     </p>
 
-    <div class="rent">$1,900–$2,200</div>
+    <div class="rent" data-one-bedroom="2000" data-two-bedroom="3000" data-one-bedroom-prefix="~" data-two-bedroom-prefix="~"></div>
 
     <a href="https://www.google.com/search?q=oak+lawn+dallas" target="_blank">
       View on Google Maps →
@@ -226,7 +353,7 @@ Add description for options that are closer to the options
     <h3>📍 Deep Ellum</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗   10 min</span>
+      <span class="commute">🚗   13 min</span>
     </div>
 
     <div class="tags">
@@ -240,7 +367,7 @@ Add description for options that are closer to the options
       scenes in Dallas.
     </p>
 
-    <div class="rent">~$1,950</div>
+    <div class="rent" data-one-bedroom="1800" data-two-bedroom="2500" data-one-bedroom-prefix="~" data-two-bedroom-prefix="~"></div>
 
     <a href="https://www.google.com/search?q=deep+ellum+dallas" target="_blank">
       View on Google Maps →
@@ -251,7 +378,7 @@ Add description for options that are closer to the options
     <h3>📍 Bishop Arts</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗   15 min</span>
+      <span class="commute">🚗   18 min</span>
     </div>
 
     <div class="tags">
@@ -265,7 +392,7 @@ Add description for options that are closer to the options
       boutiques and a relaxed atmosphere.
     </p>
 
-    <div class="rent">$1,300–$1,500</div>
+    <div class="rent" data-one-bedroom="1400" data-two-bedroom="2000" data-one-bedroom-prefix="~" data-two-bedroom-prefix="~"></div>
 
     <a href="https://www.google.com/search?q=bishop+arts+dallas" target="_blank">
       View on Google Maps →
@@ -276,7 +403,7 @@ Add description for options that are closer to the options
     <h3>📍 Lower Greenville</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗   12 min</span>
+      <span class="commute">🚗   20 min</span>
     </div>
 
     <div class="tags">
@@ -290,7 +417,8 @@ Add description for options that are closer to the options
       scene close to Uptown.
     </p>
 
-    <div class="rent">~$1,700</div>
+    <div class="rent" data-one-bedroom="1700" data-two-bedroom="2000" data-two-bedroom-prefix="~"></div>
+
 
     <a href="https://www.google.com/search?q=lower+greenville+dallas" target="_blank">
       View on Google Maps →
@@ -298,18 +426,32 @@ Add description for options that are closer to the options
   </article>
 
 </div>
+</div>
 ```
 
-### Suburban Options {#suburban-options}
+## **Suburban Options** {#suburban-options}
+### Suburban Options
 If you're comfortable with a longer commute, the suburbs offer lower rent, larger apartments, and plenty of dining, shopping, and entertainment. Many PMGers choose these areas to maximize space and value while staying within a reasonable drive of the Uptown office.
 ```{=html}
+<div class="neighborhood-rent-section">
+  <div class="bedroom-selector" role="group" aria-label="Choose apartment size for suburban neighborhood prices">
+    <div class="bedroom-selector-copy">
+      <strong>Estimated Monthly Rent</strong>
+      <span class="bedroom-selector-status" aria-live="polite">Showing 1 bedroom prices</span>
+    </div>
+    <div class="bedroom-selector-buttons">
+      <button type="button" class="bedroom-selector-button is-active" data-bedroom="1" aria-pressed="true">1 Bedroom</button>
+      <button type="button" class="bedroom-selector-button" data-bedroom="2" aria-pressed="false">2 Bedrooms</button>
+    </div>
+  </div>
+
 <div class="neighborhood-grid">
 
   <article class="neighborhood-card">
     <h3>📍 Richardson</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗 25–30 min</span>
+      <span class="commute">🚗 40-55 min</span>
     </div>
 
     <div class="tags">
@@ -324,7 +466,7 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
       lower rent and more space.
     </p>
 
-    <div class="rent">$1,300–$1,400</div>
+    <div class="rent" data-one-bedroom="~1350" data-two-bedroom="~1700"></div>
 
     <a href="https://www.google.com/search?q=richardson+tx" target="_blank">
       View on Google Maps →
@@ -335,7 +477,7 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
     <h3>📍 Addison</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗 20–25 min</span>
+      <span class="commute">🚗 35–40 min</span>
     </div>
 
     <div class="tags">
@@ -349,7 +491,7 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
       largest restaurant scenes in North Texas.
     </p>
 
-    <div class="rent">$1,450–$1,550</div>
+    <div class="rent" data-one-bedroom="~1450" data-two-bedroom="~1850"></div>
 
     <a href="https://www.google.com/search?q=addison+tx" target="_blank">
       View on Google Maps →
@@ -360,7 +502,7 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
     <h3>📍 Plano</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗 30–35 min</span>
+      <span class="commute">🚗 45–60 min</span>
     </div>
 
     <div class="tags">
@@ -374,7 +516,7 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
       apartments, excellent shopping, and a suburban lifestyle.
     </p>
 
-    <div class="rent">$1,350–$1,450</div>
+    <div class="rent" data-one-bedroom="~1500" data-two-bedroom="~1950"></div>
 
     <a href="https://www.google.com/search?q=plano+tx" target="_blank">
       View on Google Maps →
@@ -385,7 +527,8 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
     <h3>📍 Frisco</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗 35–45 min</span>
+      <span class="commute">🚗 50-75 min
+      </span>
     </div>
 
     <div class="tags">
@@ -399,7 +542,7 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
       communities, retail, entertainment, and sports venues.
     </p>
 
-    <div class="rent">$1,300–$1,400</div>
+    <div class="rent" data-one-bedroom="~1500" data-two-bedroom="~2100"></div>
 
     <a href="https://www.google.com/search?q=frisco+tx" target="_blank">
       View on Google Maps →
@@ -410,7 +553,7 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
     <h3>📍 Las Colinas</h3>
 
     <div class="neighborhood-meta">
-      <span class="commute">🚗 20–25 min</span>
+      <span class="commute">🚗 25–35 min</span>
     </div>
 
     <div class="tags">
@@ -424,7 +567,7 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
       DFW Airport and Uptown. A balanced option for work and travel.
     </p>
 
-    <div class="rent">$1,550–$1,750</div>
+    <div class="rent" data-one-bedroom="~1700" data-two-bedroom="~2250"></div>
 
     <a href="https://www.google.com/search?q=las+colinas+irving" target="_blank">
       View on Google Maps →
@@ -432,6 +575,82 @@ If you're comfortable with a longer commute, the suburbs offer lower rent, large
   </article>
 
 </div>
+</div>
+```
+
+```{=html}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const currency = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0
+  });
+
+  document.querySelectorAll(".neighborhood-rent-section").forEach(function(section) {
+    const buttons = Array.from(section.querySelectorAll(".bedroom-selector-button"));
+    const status = section.querySelector(".bedroom-selector-status");
+    const rents = section.querySelectorAll(".rent[data-one-bedroom][data-two-bedroom]");
+
+    function showBedroomPrices(bedroom) {
+      buttons.forEach(function(button) {
+        const selected = button.dataset.bedroom === bedroom;
+        button.classList.toggle("is-active", selected);
+        button.setAttribute("aria-pressed", selected ? "true" : "false");
+      });
+
+      rents.forEach(function(rent) {
+        const amount = bedroom === "2"
+          ? rent.dataset.twoBedroom
+          : rent.dataset.oneBedroom;
+        const suffix = bedroom === "2"
+          ? rent.dataset.twoBedroomSuffix || ""
+          : rent.dataset.oneBedroomSuffix || "";
+        const configuredPrefix = bedroom === "2"
+          ? rent.dataset.twoBedroomPrefix || ""
+          : rent.dataset.oneBedroomPrefix || "";
+        const amountText = String(amount || "").trim();
+        const prefix = configuredPrefix || (amountText.startsWith("~") ? "~" : "");
+        const numericAmount = Number(amountText.replace(/[^0-9.-]/g, ""));
+
+        rent.replaceChildren();
+
+        const label = document.createElement("span");
+        const value = document.createElement("span");
+        const period = document.createElement("span");
+
+        label.className = "rent-label";
+        value.className = "rent-value";
+        period.className = "rent-period";
+
+        label.textContent = bedroom + (bedroom === "1" ? " Bedroom" : " Bedrooms");
+        value.textContent = Number.isFinite(numericAmount)
+          ? prefix + currency.format(numericAmount) + suffix
+          : "Price unavailable";
+        period.textContent = "estimated monthly rent";
+
+        rent.append(label, value, period);
+        rent.classList.remove("is-changing");
+        void rent.offsetWidth;
+        rent.classList.add("is-changing");
+      });
+
+      if (status) {
+        status.textContent = "Showing " + bedroom +
+          (bedroom === "1" ? " bedroom prices" : " bedroom prices");
+      }
+    }
+
+    buttons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        showBedroomPrices(button.dataset.bedroom);
+      });
+    });
+
+    showBedroomPrices("1");
+  });
+});
+</script>
 ```
 
 *Rough averages as of mid-2026. Rents vary by season, building, and current availability.*
@@ -492,64 +711,17 @@ From locating a unit to understanding your first bill, these are the main things
 </div>
 
 ### **PMG Recommendations for Housing** {#housing-recommendations}
-*Sample results from a fictional PMGer housing survey created for this guide.*
+Based on PMGers' experiences living in Dallas. Explore average ratings, reported commutes, amenities, and advice from the housing survey.
 
 ```{=html}
-<div class="recommendations-grid apartment-recommendations-grid">
-
-  <article class="recommendation-card">
-    <h3>🏆 The Jordan by Windsor</h3>
-    <p><strong>Neighborhood:</strong> Uptown</p>
-    <p>Walkable to PMG, modern amenities, and easy access to Katy Trail.</p>
-    <div class="tags">
-      <span>12 Votes</span>
-      <span>Walkable</span>
-    </div>
-  </article>
-
-  <article class="recommendation-card">
-    <h3>🥈 MAA Uptown Village</h3>
-    <p><strong>Neighborhood:</strong> Uptown</p>
-    <p>Great location, social atmosphere, and spacious floor plans.</p>
-    <div class="tags">
-      <span>10 Votes</span>
-      <span>Popular</span>
-    </div>
-  </article>
-
-  <article class="recommendation-card">
-    <h3>🥉 Gables Park 17</h3>
-    <p><strong>Neighborhood:</strong> Victory Park</p>
-    <p>High-rise living with nearby restaurants and an easy commute.</p>
-    <div class="tags">
-      <span>9 Votes</span>
-      <span>High-Rise</span>
-    </div>
-  </article>
-
-  <article class="recommendation-card">
-    <h3>The Taylor Uptown</h3>
-    <p><strong>Neighborhood:</strong> Uptown</p>
-    <p>Resort-style amenities and one of the shortest walks to the office.</p>
-    <div class="tags">
-      <span>8 Votes</span>
-      <span>Amenities</span>
-    </div>
-  </article>
-
-  <article class="recommendation-card">
-    <h3>AMLI Design District</h3>
-    <p><strong>Neighborhood:</strong> Design District</p>
-    <p>Excellent value with newer units and convenient highway access.</p>
-    <div class="tags">
-      <span>7 Votes</span>
-      <span>Value</span>
-    </div>
-  </article>
-
+<p id="housing-recommendations-status" class="recommendations-status" role="status">Loading housing recommendations...</p>
+<div id="housing-recommendations-container" class="recommendations-grid apartment-recommendations-grid"></div>
+<div class="recommendations-actions">
+  <button id="show-all-housing-recommendations" class="recommendations-button" type="button" hidden aria-expanded="false" aria-controls="housing-recommendations-container">Show All Recommendations</button>
 </div>
+<noscript>Enable JavaScript to view the housing survey, or <a href="data/employee-housing-recommendations.csv">download the survey CSV</a>.</noscript>
 ```
-
+<br>
 Tour in person when possible because quality can vary significantly within the same price range, especially in Uptown high-rises. A common starting guideline is to budget about 25–30% of income for rent.
 
 ::: {.callout-important}
@@ -610,9 +782,14 @@ However, previous GLP classes have emphasized the need to make sure whether the 
 ::: {.panel-tabset}
 ## **Driving Through Dallas** {#driving-through-dallas}
 
-Dallas is primarily a driving city built around highways and tollways. Plan for traffic, toll costs, and commute variability.
-
 ### Major Highways
+
+::: {.callout-tip}
+# **Transportation Rule of Thumb**
+US-75 is the route most associated with unpredictable congestion. The Dallas North Tollway is often more reliable but costs money via Toll Tag.
+:::
+
+<br>
 
 ```{=html}
 <div class="highway-grid">
@@ -714,24 +891,20 @@ Dallas is primarily a driving city built around highways and tollways. Plan for 
 </div>
 ```
 
-::: {.callout-tip}
-# **Transportation Rule of Thumb**
-US-75 is the route most associated with unpredictable congestion. The Dallas North Tollway is often more reliable but costs money via Toll Tag.
-:::
 
 ## **Public Transit and TollTag** {#dart-tolltag}
+
+| Item | Cost | Notes |
+|---|---:|---|
+| ***DART (Three Hour Pass)*** | $3.00 | Valid for 2.5 hours. Purchase through the GoPass app. |
+| ***DART (Day Pass)*** | $6.00 | Unlimited rides on rail, buses, and GoLink for the day. Confirm current pricing in the app. |
+| ***NTTA TollTag*** | Free Registration + Lower Toll Rates | Used for cashless tollways, including the DNT, President George Bush Turnpike, DFW Air and SH-161. It can also be used for parking at the DFW Airport. |
 
 The Dallas–Fort Worth area offers two primary ways to get around: DART for public transportation and the NTTA TollTag for driving on toll roads.
 
 * **DART (Dallas Area Rapid Transit)**: DFW's public transportation system, providing light rail, buses, streetcars, and GoLink on-demand services throughout DFW; utilizes the GoPass app; convenient option for commuting without a car.
 
 * **NTTA TollTag**: Free electronic toll collection sticker issued by the North Texas Tollway Authority; allows drivers to pay tolls automatically on participating toll roads without stopping; typically provides lower toll rates than paying by mail.
-
-| Item | Cost | Notes |
-|---|---:|---|
-| DART (Three Hour Pass) | $3.00 | Valid for 2.5 hours. Purchase through the GoPass app. |
-| DART (Day Pass) | $6.00 | Unlimited rides on rail, buses, and GoLink for the day. Confirm current pricing in the app. |
-| NTTA TollTag | Free | Used for cashless tollways, including the DNT, President George Bush Turnpike, DFW Air and SH-161. It can also be used for parking at the DFW Airport. |
 
 
 
@@ -740,7 +913,7 @@ The Dallas–Fort Worth area offers two primary ways to get around: DART for pub
 ```{=html}
 <div class="airport-grid">
 
-  <article class="airport-card">
+  <article class="airport-card airport-card--dfw">
   <h4>DFW International Airport</h4>
   <p><strong>Best for:</strong> International travel, widest selection of flights</p>
   <p><strong>Drive from Uptown:</strong> Approximately 25–40 minutes</p>
@@ -748,7 +921,7 @@ The Dallas–Fort Worth area offers two primary ways to get around: DART for pub
   <p><strong>Flight mix:</strong> International and domestic</p>
 </article>
 
-  <article class="airport-card">
+  <article class="airport-card airport-card--love-field">
   <h4>Dallas Love Field</h4>
 
   <p><strong>Best for:</strong> Quick domestic trips and convenience</p>
@@ -767,7 +940,7 @@ The Dallas–Fort Worth area offers two primary ways to get around: DART for pub
 
 # Getting Settled in Texas
 
-Add section description for future use for GLPs
+Getting settled in Texas means preparing for the weather and checking a few practical tasks off your list. Explore the tabs below for what to expect throughout the year, how to register your vehicle and update your driver's license, and other details to help you feel at home in Dallas.
 
 ::: {.panel-tabset}
 
@@ -835,21 +1008,49 @@ Spring is beautiful but volatile. Severe thunderstorms and tornadoes are possibl
 
 ## **Register Your Vehicle** {#vehicle-registration}
 
-Register your vehicle at the county tax assessor-collector's office. Uptown residents will generally use Dallas County. Bring:
+Texas requires new residents to register their vehicle within 30 days of moving to the state. For most GLPers living in Dallas, this process will be completed through the Dallas County tax assessor-collector's office.
 
-- Out-of-state title
+### **Follow This Order**
+
+The order matters. Complete these steps before applying for your Texas driver's license:
+
+1. **Confirm Texas-compliant auto insurance**
+2. **Complete an emissions inspection**, if required for your county
+3. **Register and title your vehicle** at your county tax office
+4. **Apply for your Texas driver's license** through Texas DPS
+
+Dallas County is an emissions-testing county, so most applicable non-commercial vehicles must pass an emissions inspection before registration. Texas eliminated the general safety inspection requirement for most non-commercial vehicles in 2025.
+
+### **If a Parent Is Gifting You the Vehicle**
+
+If your vehicle is currently titled in a parent's name and they are transferring it to you as a gift, complete the **Affidavit of Motor Vehicle Gift Transfer (Form 14-317)** as part of the title-transfer process.
+
+A qualifying gift between a parent and child is generally subject to a **$10 Texas motor vehicle gift tax** rather than the standard motor vehicle sales tax. Both the donor and recipient must sign the required gift-transfer documents, and the paperwork is submitted through the county tax office.
+
+Bring the documents required for your situation, which may include:
+
+- Out-of-state title or other proof of ownership
+- Application for Texas Title and/or Registration (Form 130-U)
+- Affidavit of Motor Vehicle Gift Transfer (Form 14-317), if applicable
 - Proof of insurance that meets Texas minimums
 - Photo identification
+- Vehicle Inspection Report, if the inspection is not already available electronically
 
-You must register the vehicle before applying for a Texas driver's license.
+::: {.callout-important}
+### **Plan Ahead for Appointments**
+
+DMV, county tax office, inspection, and DPS appointment availability can fill up quickly, especially around busy moving periods. Check appointment requirements and availability as soon as you know your move date rather than waiting until your first week in Dallas.
+:::
+
+## **Emissions Inspection** {#emissions-inspection}
 
 ### Complete an Emissions Inspection {#emissions-inspection}
 
-Dallas County requires an annual emissions inspection before registration. Texas eliminated the general safety inspection requirement in 2025, but emissions testing still applies in Dallas and several other DFW-area counties.
+Dallas County requires qualifying vehicles to pass an emissions inspection before registration. Texas eliminated the general safety inspection requirement for most non-commercial vehicles in 2025, but emissions testing still applies in Dallas and several other Texas counties.
 
 ## **Driver's License** {#license}
 
-Texas gives new residents firm deadlines. The recommended order is vehicle inspection, registration, insurance verification, and then the Texas driver's license.
+After completing your vehicle requirements, schedule your Texas driver's license appointment through the Texas Department of Public Safety. Completing the vehicle process first helps ensure you have the Texas registration documentation needed as you establish residency.
 
 ### Getting a Texas Driver's License {#texas-drivers-license}
 
@@ -859,11 +1060,11 @@ Apply through the Texas Department of Public Safety. Bring:
 - Social Security number
 - Two proofs of Texas residency
 
-:::
 
-# Optional
 
-#### Register to Vote {#register-to-vote}
+## **Optional Registrations**
+
+### Register to Vote {#register-to-vote}
 
 You may register when obtaining a Texas ID or through the appropriate state registration process.
 
@@ -878,8 +1079,48 @@ You may register when obtaining a Texas ID or through the appropriate state regi
 This is commonly summarized as **30/60/25**. Confirm that your out-of-state policy meets these minimums before registering your vehicle.
 
 :::
+:::
 
 ::: {.section-dark}
+
+# Getting Set Up in the Office {#getting-set-up-in-the-office}
+
+The Dallas office is a vibrant and welcoming environment where new employees can quickly feel at home and connected to the team. Our team is committed to providing a supportive and collaborative workspace that helps everyone thrive. With that being said, it's important that we follow the rules and expectations set within the office space by listening to some words of advice from PMG's Head of Culture, Pam Buyers!
+
+::: {.panel-tabset}
+
+## **Office Expectations** {#office-expectations}
+
+- **Communication & Engagement**: Keep volume down in common areas to avoid disturbing others or leaking sensitive discussions, stay on top of your emails and Slack messages, and stay actively engaged during meetings (including turning your camera on during Zoom calls).
+
+- **Kitchen & Shared Spaces**: Clean up after yourself immediately—wash your own dishes, wipe down microwaves after spills, clear your table after eating, and throw away any stray trash you see. Be mindful of strong-smelling foods like fish or Brussels sprouts when bringing lunch.
+
+- **Shared Food & Perks**: Wait until everyone has had a chance to get food before taking seconds or packing leftovers.
+
+- **Health & Courtesy**: Stay home when you are feeling sick to keep the rest of the team healthy.
+
+- **Meeting & Desk Management**: Always reserve a desk ahead of time (especially when visiting another office), and end meetings on time so the next group can start promptly
+
+## **What to Wear** {#what-to-wear}
+
+**What to Wear (The Dos):**
+
+- **Express Yourself Comfortably**: Wear outfits that make you feel confident and authentic, including visible tattoos (work-appropriate), piercings, and colorful hair.
+- **Adapt to Your Audience**: Match your personal style with the expectations of the client or partner you're meeting with.
+
+**What Not to Wear (The Don'ts):**
+
+- **Avoid Unprofessional Attire**: Skip clothing that is overly revealing, shows your midriff, is excessively short, or is overly baggy. Aim for smart casual.
+- **Ditch the Sleepwear**: Save pajama pants for home and opt for elevated joggers or comfortable, neat alternatives instead.
+- **Keep It Respectful**: Never wear items featuring offensive text or graphics.
+
+## **Benefits** {#benefits}
+
+:::
+
+:::
+
+::: {.section-light}
 
 # PMGer Recommendations {#pmger-recommendations}
 
@@ -887,8 +1128,8 @@ Pulled straight from a PMG survey — the spots and tips real coworkers actually
 
 <div class="recommendations-intro">
   <p>
-    Browse recommendations by category below. These are loaded directly from
-    recommendations.csv.
+    Browse food, coffee, bars, and things to do recommended by fellow PMGers.
+    Open the full list for locations, links, and their tips.
   </p>
 </div>
 
@@ -914,50 +1155,10 @@ Pulled straight from a PMG survey — the spots and tips real coworkers actually
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.5.3/papaparse.min.js"></script>
 <script src="recommendations.js"></script>
+<script src="housing-recommendations.js"></script>
 
 :::
 
-::: {.section-light}
-
-# Helpful Resources {#helpful-resources}
-<div class="resource-list">
-  <a class="resource-item" href="https://www.powertochoose.org/" target="_blank" rel="noopener noreferrer">
-    <span class="resource-icon">⚡</span>
-    <span>
-      <strong>PowerToChoose</strong>
-      <small>Official electricity-plan comparison site</small>
-    </span>
-    <span class="resource-arrow">→</span>
-  </a>
-
-  <a class="resource-item" href="https://www.ntta.org/" target="_blank" rel="noopener noreferrer">
-    <span class="resource-icon">🚗</span>
-    <span>
-      <strong>NTTA TollTag</strong>
-      <small>TollTag registration and account management</small>
-    </span>
-    <span class="resource-arrow">→</span>
-  </a>
-
-  <a class="resource-item" href="https://www.dart.org/" target="_blank" rel="noopener noreferrer">
-    <span class="resource-icon">🚊</span>
-    <span>
-      <strong>DART</strong>
-      <small>Fares, routes, rail, buses, and GoPass</small>
-    </span>
-    <span class="resource-arrow">→</span>
-  </a>
-
-  <a class="resource-item" href="https://www.dps.texas.gov/" target="_blank" rel="noopener noreferrer">
-    <span class="resource-icon">🪪</span>
-    <span>
-      <strong>Texas DPS</strong>
-      <small>Driver's license information and appointments</small>
-    </span>
-    <span class="resource-arrow">→</span>
-  </a>
-</div>
-:::
 
 ::: {.section-dark}
 
@@ -983,9 +1184,9 @@ Pulled straight from a PMG survey — the spots and tips real coworkers actually
 - [ ] Locate Your Nearest Grocery Store, Pharmacy, and Gas Station
 
 ### First Month
-- Complete emissions inspection if required
-- Register your vehicle
-- Begin the Texas driver's license process
+- [ ] Complete emissions inspection if required
+- [ ] Register your vehicle
+- [ ] Begin the Texas driver's license process
 
 ```{=html}
 <script>
@@ -998,6 +1199,8 @@ Pulled straight from a PMG survey — the spots and tips real coworkers actually
   });
 </script>
 ```
+:::
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -1005,12 +1208,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const panel = document.getElementById("nav-search-panel");
   const input = document.getElementById("nav-search-input");
   const results = document.getElementById("nav-search-results");
+  const closeButton = document.getElementById("nav-search-close");
+  const clearButton = document.getElementById("nav-search-clear");
 
-  if (!toggle || !panel || !input || !results) return;
+  if (!toggle || !panel || !input || !results || !closeButton || !clearButton) return;
 
-  const sections = [
+  const curatedSections = [
     {
-      id: "neighborhood-options",
+      id: "local-options",
       title: "Dallas Neighborhoods",
       terms: [
         "where should i live",
@@ -1273,18 +1478,6 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
     {
-      id: "helpful-resources",
-      title: "Helpful Resources",
-      terms: [
-        "resource",
-        "resources",
-        "helpful link",
-        "links",
-        "where can i find more information"
-      ]
-    },
-
-    {
       id: "pmg-pre-engagement",
       title: "PMG Pre-Engagement",
       terms: [
@@ -1312,157 +1505,459 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   ];
 
+  const quickSearches = [
+    "Where should I live?",
+    "How do I register my car?",
+    "What will an apartment cost?",
+    "How do toll roads work?"
+  ];
+
+  function getTargetForHeading(heading) {
+    if (heading.id) return heading;
+
+    const section = heading.closest("section[id]");
+    const sectionHeading = section && section.querySelector(":scope > h1, :scope > h2, :scope > h3, :scope > h4");
+
+    if (sectionHeading === heading) return section;
+
+    const baseId = "search-" + normalize(heading.textContent).replace(/\s+/g, "-").slice(0, 60);
+    if (!baseId || baseId === "search-") return section || null;
+
+    let uniqueId = baseId;
+    let suffix = 2;
+
+    while (document.getElementById(uniqueId)) {
+      uniqueId = baseId + "-" + suffix;
+      suffix += 1;
+    }
+
+    heading.id = uniqueId;
+    return heading;
+  }
+
+  function getSectionContext(target, title) {
+    const labels = [];
+    let parent = target.parentElement && target.parentElement.closest("section[id]");
+
+    while (parent) {
+      const heading = parent.querySelector(":scope > h1, :scope > h2, :scope > h3, :scope > h4");
+      const label = heading ? heading.textContent.trim() : "";
+
+      if (label && label !== title) labels.unshift(label);
+      parent = parent.parentElement && parent.parentElement.closest("section[id]");
+    }
+
+    return labels.slice(-2).join(" › ");
+  }
+
+  function getSectionExcerpt(target, title) {
+    const copy = target.cloneNode(true);
+
+    copy.querySelectorAll("script, style, button, nav, h1, h2, h3, h4").forEach(function(node) {
+      node.remove();
+    });
+
+    const text = copy.textContent.replace(/\s+/g, " ").trim();
+    const withoutRepeatedTitle = text.toLowerCase().startsWith(title.toLowerCase())
+      ? text.slice(title.length).trim()
+      : text;
+
+    if (withoutRepeatedTitle.length <= 170) return withoutRepeatedTitle;
+    return withoutRepeatedTitle.slice(0, 167).replace(/\s+\S*$/, "") + "…";
+  }
+
+  function buildSearchIndex() {
+    const content = document.getElementById("quarto-document-content") || document.querySelector("main");
+    if (!content) return curatedSections;
+
+    const curatedById = new Map(curatedSections.map(function(section) {
+      return [section.id, section];
+    }));
+    const curatedByTitle = new Map(curatedSections.map(function(section) {
+      return [normalize(section.title), section];
+    }));
+    const seen = new Set();
+    const entries = [];
+    const tabTitles = new Set();
+
+    function addEntry(target, title) {
+      if (!target || !target.id || seen.has(target.id) || !title) return;
+
+      const curated = curatedById.get(target.id) || curatedByTitle.get(normalize(title));
+      const contentSource = target.matches("h1, h2, h3, h4")
+        ? target.closest("article, section, .callout, .weather-card, .neighborhood-card") || target.parentElement
+        : target;
+
+      seen.add(target.id);
+      entries.push({
+        id: target.id,
+        title: curated ? curated.title : title,
+        terms: curated ? curated.terms : [],
+        context: getSectionContext(target, title),
+        excerpt: getSectionExcerpt(contentSource, title),
+        searchText: contentSource.textContent.replace(/\s+/g, " ").trim(),
+        order: seen.size
+      });
+    }
+
+    content.querySelectorAll(".panel-tabset .nav-link[data-bs-target]").forEach(function(tab) {
+      const selector = tab.getAttribute("data-bs-target");
+      const target = selector ? document.querySelector(selector) : null;
+      const title = tab.textContent.trim();
+
+      tabTitles.add(normalize(title));
+      addEntry(target, title);
+    });
+
+    Array.from(content.querySelectorAll("h1, h2, h3, h4"))
+      .forEach(function(heading) {
+        const target = getTargetForHeading(heading);
+        const title = heading.textContent.trim();
+
+        if (!tabTitles.has(normalize(title))) addEntry(target, title);
+      });
+
+    return entries;
+  }
+
+  const sections = buildSearchIndex();
+
+  const tabSections = {
+    "local-options": "Local Options",
+    "suburban-options": "Suburban Options",
+    "finding-an-apartment": "Apartment Search",
+    "move-in-deals": "Fees, Deposits, and Move-In Deals",
+    "electricity": "Electricity",
+    "driving-through-dallas": "Driving Through Dallas",
+    "dart-tolltag": "Public Transit and TollTag",
+    "airports": "Airports",
+    "weather": "Weather in Texas",
+    "vehicle-registration": "Register Your Vehicle",
+    "license": "Driver's License"
+  };
+
+  function findTabByTitle(title) {
+    return Array.from(document.querySelectorAll(".panel-tabset .nav-link[data-bs-target]"))
+      .find(function(tab) {
+        return normalize(tab.textContent) === normalize(title);
+      });
+  }
+
+  function tabForPanel(panel) {
+    if (!panel || !panel.id) return null;
+    return document.querySelector('[data-bs-target="#' + panel.id + '"]');
+  }
+
+  function activateGuideSection(sectionId, shouldScroll) {
+    const semanticTab = tabSections[sectionId]
+      ? findTabByTitle(tabSections[sectionId])
+      : null;
+    const directTarget = document.getElementById(sectionId);
+    const directPanel = directTarget && directTarget.closest(".tab-pane");
+    const tab = semanticTab || tabForPanel(directPanel);
+
+    if (!tab && !directTarget) return false;
+    if (tab && tab.getAttribute("aria-selected") !== "true") tab.click();
+
+    if (shouldScroll) {
+      const selector = tab && tab.getAttribute("data-bs-target");
+      const panel = selector ? document.querySelector(selector) : null;
+      const scrollTarget = directTarget || panel || tab.closest(".panel-tabset");
+
+      window.requestAnimationFrame(function() {
+        scrollTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    return true;
+  }
+
   function normalize(text) {
     return text
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase()
-      .replace(/[^a-z0-9\s'-]/g, " ")
+      .replace(/&/g, " and ")
+      .replace(/[^a-z0-9\s]/g, " ")
       .replace(/\s+/g, " ")
       .trim();
   }
 
-  function scoreSection(section, question) {
+  function searchableWords(text) {
+    const ignored = new Set([
+      "a", "an", "and", "are", "can", "do", "for", "how", "i", "in",
+      "is", "it", "my", "of", "on", "the", "to", "what", "where", "with"
+    ]);
 
-    const q = normalize(question);
-
-    const words = q
+    return normalize(text)
       .split(" ")
-      .filter(word => word.length > 2);
-
-    let score = 0;
-
-    section.terms.forEach(function(term) {
-
-      const t = normalize(term);
-
-      if (q === t) {
-        score += 20;
-      }
-      else if (q.includes(t)) {
-        score += 12;
-      }
-      else if (t.includes(q) && q.length >= 4) {
-        score += 6;
-      }
-
-      const termWords = t.split(" ");
-
-      words.forEach(function(word) {
-        if (termWords.includes(word)) {
-          score += 2;
-        }
+      .filter(function(word) {
+        return word.length > 1 && !ignored.has(word);
       });
+  }
 
+  function singular(word) {
+    if (word.length > 4 && word.endsWith("ies")) return word.slice(0, -3) + "y";
+    if (word.length > 4 && word.endsWith("es")) return word.slice(0, -2);
+    if (word.length > 3 && word.endsWith("s")) return word.slice(0, -1);
+    return word;
+  }
+
+  function wordMatches(queryWord, candidateWord) {
+    const queryRoot = singular(queryWord);
+    const candidateRoot = singular(candidateWord);
+
+    return queryRoot === candidateRoot ||
+      (queryRoot.length >= 4 && candidateRoot.startsWith(queryRoot)) ||
+      (candidateRoot.length >= 4 && queryRoot.startsWith(candidateRoot));
+  }
+
+  function scoreSection(section, question) {
+    const q = normalize(question);
+    const words = searchableWords(q);
+    const title = normalize(section.title);
+    const aliases = section.terms.map(normalize);
+    const context = normalize(section.context || "");
+    const excerpt = normalize(section.searchText || section.excerpt || "");
+    const titleWords = searchableWords(title);
+    const aliasWords = searchableWords(aliases.join(" "));
+    const contextWords = searchableWords(context);
+    const excerptWords = searchableWords(excerpt);
+    let score = 0;
+    let matchedWords = 0;
+
+    if (q === title) score += 140;
+    else if (title.includes(q) && q.length >= 3) score += 75;
+
+    aliases.forEach(function(alias) {
+      if (q === alias) score += 120;
+      else if (alias.includes(q) || q.includes(alias)) score += 60;
     });
+
+    if (context.includes(q) && q.length >= 3) score += 25;
+    if (excerpt.includes(q) && q.length >= 4) score += 35;
 
     words.forEach(function(word) {
-      if (normalize(section.title).includes(word)) {
-        score += 2;
+      let wordScore = 0;
+
+      if (titleWords.some(function(candidate) { return wordMatches(word, candidate); })) wordScore = 24;
+      else if (aliasWords.some(function(candidate) { return wordMatches(word, candidate); })) wordScore = 20;
+      else if (contextWords.some(function(candidate) { return wordMatches(word, candidate); })) wordScore = 10;
+      else if (excerptWords.some(function(candidate) { return wordMatches(word, candidate); })) wordScore = 5;
+
+      if (wordScore) {
+        matchedWords += 1;
+        score += wordScore;
       }
     });
 
-    return score;
+    const coverage = words.length ? matchedWords / words.length : 0;
+    if (coverage === 1 && words.length > 1) score += 30;
+    if (coverage < 0.5) score *= 0.35;
+
+    return { score: score, coverage: coverage };
   }
 
   function getMatches(question) {
+    if (!normalize(question)) return [];
 
     return sections
       .map(function(section) {
+        const result = scoreSection(section, question);
         return {
           section: section,
-          score: scoreSection(section, question)
+          score: result.score,
+          coverage: result.coverage
         };
       })
       .filter(function(match) {
-        return match.score > 0;
+        return match.score >= 5 && match.coverage > 0;
       })
       .sort(function(a, b) {
-        return b.score - a.score;
+        return b.score - a.score || a.section.order - b.section.order;
       });
-
   }
 
   function goToSection(section) {
-
     const target = document.getElementById(section.id);
-
     if (!target) return;
+
+    const tabPanel = target.classList.contains("tab-pane")
+      ? target
+      : target.closest(".tab-pane");
+
+    if (tabPanel && !tabPanel.classList.contains("active")) {
+      const tab = document.querySelector('[data-bs-target="#' + tabPanel.id + '"]');
+      if (tab) tab.click();
+    }
+
+    closeSearch(false);
 
     target.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
 
-    target.classList.add("search-hit");
+    const highlightTarget = target.matches("h1, h2, h3, h4")
+      ? target
+      : target.querySelector("h1, h2, h3, h4") || target;
+
+    highlightTarget.classList.add("search-hit");
+    if (!section.id.startsWith("tabset-")) {
+      history.replaceState(null, "", "#" + encodeURIComponent(section.id));
+    }
 
     setTimeout(function() {
-      target.classList.remove("search-hit");
+      highlightTarget.classList.remove("search-hit");
     }, 1600);
+  }
 
+  function closeSearch(returnFocus) {
     panel.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
-
+    document.body.classList.remove("search-is-open");
     input.value = "";
+    clearButton.hidden = true;
     results.innerHTML = "";
+
+    if (returnFocus) toggle.focus();
+  }
+
+  function openSearch() {
+    const navigation = document.querySelector(".top-nav");
+    if (navigation) panel.style.top = Math.max(0, navigation.getBoundingClientRect().bottom) + "px";
+
+    panel.hidden = false;
+    toggle.setAttribute("aria-expanded", "true");
+    document.body.classList.add("search-is-open");
+    renderResults(input.value);
+    input.focus();
+  }
+
+  function createResultHeading(text) {
+    const heading = document.createElement("p");
+    heading.className = "nav-search-results-heading";
+    heading.textContent = text;
+    return heading;
+  }
+
+  function renderQuickSearches() {
+    const wrapper = document.createElement("div");
+    const chips = document.createElement("div");
+
+    wrapper.className = "nav-search-suggestions";
+    chips.className = "nav-search-chips";
+    wrapper.appendChild(createResultHeading("Popular searches"));
+
+    quickSearches.forEach(function(question) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "nav-search-chip";
+      button.textContent = question;
+      button.addEventListener("click", function() {
+        input.value = question;
+        clearButton.hidden = false;
+        renderResults(question);
+        input.focus();
+      });
+      chips.appendChild(button);
+    });
+
+    wrapper.appendChild(chips);
+    results.appendChild(wrapper);
   }
 
   function renderResults(question) {
-
     results.innerHTML = "";
+    clearButton.hidden = !input.value;
 
-    if (question.trim().length < 2) return;
-
-    const matches = getMatches(question).slice(0, 3);
-
-    if (!matches.length) {
-
-      results.innerHTML =
-        '<div class="nav-search-empty">' +
-        'No close match found. Try asking about apartments, parking, weather, registration, or recommendations.' +
-        '</div>';
-
+    if (question.trim().length < 2) {
+      renderQuickSearches();
       return;
     }
 
-    matches.forEach(function(match, index) {
+    const matches = getMatches(question).slice(0, 6);
 
+    if (!matches.length) {
+      const empty = document.createElement("div");
+      empty.className = "nav-search-empty";
+      empty.innerHTML = "<strong>No close match found</strong><span>Try fewer words or search for a topic such as apartments, parking, weather, or registration.</span>";
+      results.appendChild(empty);
+      return;
+    }
+
+    results.appendChild(createResultHeading(
+      matches.length + (matches.length === 1 ? " result" : " results") + " for “" + question.trim() + "”"
+    ));
+
+    matches.forEach(function(match, index) {
       const button = document.createElement("button");
+      const copy = document.createElement("span");
+      const topLine = document.createElement("span");
+      const title = document.createElement("strong");
+      const arrow = document.createElement("span");
 
       button.type = "button";
       button.className = "nav-search-result";
+      button.dataset.resultIndex = String(index);
 
-      button.innerHTML =
-        '<span class="nav-search-result-label">' +
-        (index === 0 ? "Best match" : "Related") +
-        '</span>' +
-        '<strong>' +
-        match.section.title +
-        '</strong>';
+      copy.className = "nav-search-result-copy";
+      topLine.className = "nav-search-result-topline";
+      title.textContent = match.section.title;
+      arrow.className = "nav-search-result-arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "→";
+
+      if (match.section.context) {
+        const context = document.createElement("span");
+        context.className = "nav-search-result-context";
+        context.textContent = match.section.context;
+        topLine.appendChild(context);
+      } else if (index === 0) {
+        const bestMatch = document.createElement("span");
+        bestMatch.className = "nav-search-result-context";
+        bestMatch.textContent = "Best match";
+        topLine.appendChild(bestMatch);
+      }
+
+      topLine.appendChild(title);
+      copy.appendChild(topLine);
+
+      if (match.section.excerpt) {
+        const excerpt = document.createElement("span");
+        excerpt.className = "nav-search-result-excerpt";
+        excerpt.textContent = match.section.excerpt;
+        copy.appendChild(excerpt);
+      }
+
+      button.appendChild(copy);
+      button.appendChild(arrow);
 
       button.addEventListener("click", function() {
         goToSection(match.section);
       });
 
+      button.addEventListener("keydown", function(event) {
+        const buttons = Array.from(results.querySelectorAll(".nav-search-result"));
+
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          event.preventDefault();
+          const direction = event.key === "ArrowDown" ? 1 : -1;
+          const nextIndex = (index + direction + buttons.length) % buttons.length;
+          buttons[nextIndex].focus();
+        } else if (event.key === "Escape") {
+          event.preventDefault();
+          closeSearch(true);
+        }
+      });
+
       results.appendChild(button);
-
     });
-
   }
 
   toggle.addEventListener("click", function() {
-
-    const opening = panel.hidden;
-
-    panel.hidden = !opening;
-
-    toggle.setAttribute(
-      "aria-expanded",
-      opening ? "true" : "false"
-    );
-
-    if (opening) {
-      input.focus();
-    }
-
+    if (panel.hidden) openSearch();
+    else closeSearch(true);
   });
 
   input.addEventListener("input", function() {
@@ -1470,52 +1965,85 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   input.addEventListener("keydown", function(event) {
-
-    if (event.key === "Enter") {
-
-      const matches = getMatches(input.value);
-
-      if (matches.length) {
-
+    if (event.key === "ArrowDown") {
+      const firstResult = results.querySelector(".nav-search-result");
+      if (firstResult) {
         event.preventDefault();
-
-        goToSection(matches[0].section);
-
+        firstResult.focus();
       }
-
+    } else if (event.key === "Enter") {
+      const matches = getMatches(input.value);
+      if (matches.length) {
+        event.preventDefault();
+        goToSection(matches[0].section);
+      }
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      closeSearch(true);
     }
-
   });
 
-  document.addEventListener("click", function (event) {
-  const clickedInsideSearch = panel.contains(event.target);
-  const clickedSearchButton = toggle.contains(event.target);
-
-  if (!panel.hidden && !clickedInsideSearch && !clickedSearchButton) {
-    panel.hidden = true;
-    toggle.setAttribute("aria-expanded", "false");
+  clearButton.addEventListener("click", function() {
     input.value = "";
-    results.innerHTML = "";
-  }
-});
+    renderResults("");
+    input.focus();
+  });
+
+  closeButton.addEventListener("click", function() {
+    closeSearch(true);
+  });
+
+  document.querySelectorAll('.top-nav a[href^="#"]').forEach(function(link) {
+    link.addEventListener("click", function(event) {
+      const sectionId = decodeURIComponent(link.getAttribute("href").slice(1));
+
+      if (activateGuideSection(sectionId, true)) {
+        event.preventDefault();
+        history.pushState(null, "", "#" + encodeURIComponent(sectionId));
+      }
+    });
+  });
+
+  Object.keys(tabSections).forEach(function(sectionId) {
+    const tab = findTabByTitle(tabSections[sectionId]);
+    if (!tab) return;
+
+    tab.addEventListener("click", function() {
+      history.replaceState(null, "", "#" + encodeURIComponent(sectionId));
+    });
+  });
+
+  window.addEventListener("hashchange", function() {
+    const sectionId = decodeURIComponent(window.location.hash.slice(1));
+    if (sectionId) activateGuideSection(sectionId, true);
+  });
+
+  document.addEventListener("click", function(event) {
+    if (!panel.hidden && !panel.contains(event.target) && !toggle.contains(event.target)) {
+      closeSearch(false);
+    }
+  });
 
   document.addEventListener("keydown", function(event) {
-
     if (event.key === "Escape" && !panel.hidden) {
-
-      panel.hidden = true;
-
-      toggle.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-
-      input.value = "";
-      results.innerHTML = "";
-
+      closeSearch(true);
+      return;
     }
 
+    const target = event.target;
+    const isTyping = target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target.isContentEditable;
+
+    if (!isTyping && (event.key === "/" || ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k"))) {
+      event.preventDefault();
+      openSearch();
+    }
   });
+
+  if (window.location.hash) {
+    activateGuideSection(decodeURIComponent(window.location.hash.slice(1)), true);
+  }
 
 });
 </script>

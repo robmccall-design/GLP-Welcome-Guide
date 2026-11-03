@@ -4,6 +4,7 @@ project:
     - glp_guide_v2.qmd
   resources:
     - recommendations.js
+    - housing-recommendations.js
     - data/**
 
 format:

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  const csvPath = "data/reccomendations.csv";
+  const csvPath = "reccomendations_v2.csv";
 
   const categories = [
     { key: "food", label: "Food", emoji: "🍔" },
@@ -45,18 +45,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     const csvText = await response.text();
 
     const parsed = Papa.parse(csvText, {
-      header: true,
-      skipEmptyLines: true,
-      transformHeader: function (header) {
-        return header.trim();
-      }
+      // Survey questions repeat across categories, so keep columns positional.
+      header: false,
+      skipEmptyLines: true
     });
 
     if (parsed.errors.length > 0) {
       console.warn("CSV parsing warnings:", parsed.errors);
     }
 
-    const surveyResponses = parsed.data
+    const surveyResponses = parsed.data.slice(1)
       .map(normalizeSurveyResponse)
       .filter(function (response) {
         return response.category && response.name;
@@ -117,12 +115,35 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   function normalizeSurveyResponse(row) {
+    const category = normalizeCategory(row[1]);
+    const columns = {
+      coffee: { name: 2, location: 3, notes: 4, website: 5 },
+      bars: { name: 6, location: 7, notes: 8, website: 9 },
+      food: { name: 10, location: 12, notes: 14, website: 15 },
+      "things-to-do": { name: 16, location: 18, notes: 19, website: 20 }
+    }[category];
+
+    if (!columns) {
+      return {};
+    }
+
+    const notes = [cleanText(row[columns.notes])];
+
+    if (category === "food") {
+      const meals = cleanText(row[11]).split(";").filter(Boolean).join(", ");
+      const price = cleanText(row[13]);
+      if (meals) notes.push(`Meals: ${meals}.`);
+      if (price) notes.push(`Price per person: ${price}.`);
+    } else if (category === "things-to-do" && cleanText(row[17])) {
+      notes.push(`Setting: ${cleanText(row[17])}.`);
+    }
+
     return {
-      category: normalizeCategory(row["Category"]),
-      name: cleanText(row["Recommendation"]),
-      location: cleanText(row["Location"]),
-      notes: cleanText(row["Notes"]),
-      website: cleanUrl(row["Website"])
+      category,
+      name: cleanText(row[columns.name]),
+      location: cleanText(row[columns.location]),
+      notes: notes.filter(Boolean).join(" "),
+      website: cleanUrl(row[columns.website])
     };
   }
 
@@ -131,22 +152,26 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const aliases = {
       food: "food",
+      "restaurant 🍔": "food",
       restaurant: "food",
       restaurants: "food",
       coffee: "coffee",
+      "coffee shop ☕️": "coffee",
       cafe: "coffee",
       café: "coffee",
       cafes: "coffee",
       cafés: "coffee",
       bar: "bars",
       bars: "bars",
+      "bars / cocktail lounge 🍹": "bars",
       activity: "things-to-do",
       activities: "things-to-do",
       attraction: "things-to-do",
       attractions: "things-to-do",
       entertainment: "things-to-do",
       "thing to do": "things-to-do",
-      "things to do": "things-to-do"
+      "things to do": "things-to-do",
+      "things to do 🕺": "things-to-do"
     };
 
     return aliases[normalized] || "";
@@ -167,15 +192,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         return;
       }
 
-      const recommendationKey = [
-        normalizeName(response.name),
-        normalizeName(response.location)
-      ].join("|");
+      const recommendationKey = normalizeName(response.name);
 
       if (!categoryMap.has(recommendationKey)) {
         categoryMap.set(recommendationKey, {
           name: response.name,
-          location: response.location,
+          locations: new Set(),
           website: response.website,
           count: 0,
           notes: new Set()
@@ -186,6 +208,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         categoryMap.get(recommendationKey);
 
       recommendation.count += 1;
+
+      if (response.location) {
+        recommendation.locations.add(response.location);
+      }
 
       if (response.notes) {
         recommendation.notes.add(response.notes);
@@ -205,6 +231,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         .map(function (recommendation) {
           return {
             ...recommendation,
+            location: Array.from(recommendation.locations).join("; "),
             notes: Array.from(recommendation.notes)
           };
         })
@@ -230,10 +257,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     container.replaceChildren();
 
     categoryConfig.forEach(function (category) {
-      const recommendations = (grouped.get(category.key) || [])
-        .filter(function (recommendation) {
-          return Boolean(recommendation.website);
-        });
+      const recommendations = grouped.get(category.key) || [];
 
       const section = document.createElement("section");
       section.className = "recommendation-category";
@@ -279,7 +303,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const count = document.createElement("span");
             count.className = "recommendation-count";
             count.textContent =
-              `${recommendation.count} PMGer${recommendation.count === 1 ? "" : "s"}`;
+              `${recommendation.count} recommendation${recommendation.count === 1 ? "" : "s"}`;
 
             item.append(link, count);
             list.appendChild(item);

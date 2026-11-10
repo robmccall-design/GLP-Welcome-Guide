@@ -28,7 +28,7 @@ format:
     <a href="#finding-a-place-to-live">Neighborhoods</a>
     <a href="#finding-an-apartment">Apartments</a>
     <a href="#parking-and-transportation">Transportation</a>
-    <a href="#weather">Weather</a>
+    <a href="#getting-settled-in-texas">Getting Settled in Texas</a>
     <a href="#pmger-recommendations">Recommendations</a>
     <details class="nav-resources-dropdown">
   <summary>
@@ -938,73 +938,11 @@ The Dallas–Fort Worth area offers two primary ways to get around: DART for pub
 
 ::: {.section-light}
 
-# Getting Settled in Texas
+# Getting Settled in Texas {#getting-settled-in-texas}
 
 Getting settled in Texas means preparing for the weather and checking a few practical tasks off your list. Explore the tabs below for what to expect throughout the year, how to register your vehicle and update your driver's license, and other details to help you feel at home in Dallas.
 
 ::: {.panel-tabset}
-
-## **Weather in Texas** {#weather}
-
-<div class="weather-grid">
-
-<div class="weather-card weather-summer">
-
-### Summer
-
-<div class="weather-highlight">
-
-95–105°F
-
-</div>
-
-Hot and humid from roughly June through September. Air conditioning runs nearly nonstop, and electricity bills can rise substantially.
-
-</div>
-
-<div class="weather-card weather-fall">
-
-### Fall
-
-<div class="weather-highlight">
-
-Best Weather
-
-</div>
-
-October and November usually bring warm days, cooler nights, and lower humidity. Generally the most pleasant time of year.
-
-</div>
-
-<div class="weather-card weather-winter">
-
-### Winter
-
-<div class="weather-highlight">
-
-40s–60s°F
-
-</div>
-
-Usually mild but unpredictable. Ice storms or hard freezes can shut down roads and schools. Keep a coat and blanket in your car.
-
-</div>
-
-<div class="weather-card weather-spring">
-
-### Spring
-
-<div class="weather-highlight">
-
-Storm Season
-
-</div>
-
-Spring is beautiful but volatile. Severe thunderstorms and tornadoes are possible, so keep weather alerts enabled.
-
-</div>
-
-</div>
 
 ## **Register Your Vehicle** {#vehicle-registration}
 
@@ -1078,7 +1016,71 @@ You may register when obtaining a Texas ID or through the appropriate state regi
 
 This is commonly summarized as **30/60/25**. Confirm that your out-of-state policy meets these minimums before registering your vehicle.
 
+## **Weather in Texas** {#weather}
+
+<div class="weather-grid">
+
+<div class="weather-card weather-summer">
+
+### Summer
+
+<div class="weather-highlight">
+
+95–105°F
+
+</div>
+
+Hot and humid from roughly June through September. Air conditioning runs nearly nonstop, and electricity bills can rise substantially.
+
+</div>
+
+<div class="weather-card weather-fall">
+
+### Fall
+
+<div class="weather-highlight">
+
+Best Weather
+
+</div>
+
+October and November usually bring warm days, cooler nights, and lower humidity. Generally the most pleasant time of year.
+
+</div>
+
+<div class="weather-card weather-winter">
+
+### Winter
+
+<div class="weather-highlight">
+
+40s–60s°F
+
+</div>
+
+Usually mild but unpredictable. Ice storms or hard freezes can shut down roads and schools. Keep a coat and blanket in your car.
+
+</div>
+
+<div class="weather-card weather-spring">
+
+### Spring
+
+<div class="weather-highlight">
+
+Storm Season
+
+</div>
+
+Spring is beautiful but volatile. Severe thunderstorms and tornadoes are possible, so keep weather alerts enabled.
+
+</div>
+
+</div>
+
 :::
+
+
 :::
 
 ::: {.section-dark}
@@ -1128,7 +1130,8 @@ Pulled straight from a PMG survey — the spots and tips real coworkers actually
 
 <div class="recommendations-intro">
   <p>
-    Browse food, coffee, bars, and things to do recommended by fellow PMGers.
+    Explore the top three spots in each category, ranked by the number of survey recommendations.
+    Repeat recommendations for the same spot are combined, with ties listed alphabetically.
     Open the full list for locations, links, and their tips.
   </p>
 </div>

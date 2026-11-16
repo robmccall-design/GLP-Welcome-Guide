@@ -4110,7 +4110,7 @@ vertical-align: -.125em;
         <div class="welcome-meta-item">
           <span class="welcome-meta-label">Proj. Start Date</span>
           <span class="welcome-meta-value">
-            Monday, January 11th, 2027
+            Tuesday, January 19th, 2027
           </span>
         </div>
 
@@ -4122,7 +4122,7 @@ vertical-align: -.125em;
               <button class="welcome-contact-name" type="button" aria-expanded="false" aria-controls="contact-onboarding">Onboarding</button>
               <div class="welcome-contact-popover" id="contact-onboarding" hidden>
                 <strong class="welcome-contact-purpose">Getting set up</strong>
-                <a class="welcome-contact-email" href="mailto:onboarding@example.com">onboarding@example.com</a>
+                <a class="welcome-contact-email" href="mailto:onboarding@pmg.com">onboarding@pmg.com</a>
               <p>Reach out about new hire paperwork, onboarding tasks, and first-day logistics.</p>
               </div>
             </li>
@@ -4130,7 +4130,7 @@ vertical-align: -.125em;
               <button class="welcome-contact-name" type="button" aria-expanded="false" aria-controls="contact-earlycareers">Early Careers</button>
               <div class="welcome-contact-popover" id="contact-earlycareers" hidden>
                 <strong class="welcome-contact-purpose">Your GLP experience</strong>
-                <a class="welcome-contact-email" href="mailto:earlycareers@example.com">earlycareers@example.com</a>
+                <a class="welcome-contact-email" href="mailto:earlycareers@pmg.com">earlycareers@pmg.com</a>
               <p>Reach out about the GLP program, cohort activities, training, and development.</p>
               </div>
             </li>
@@ -4138,7 +4138,7 @@ vertical-align: -.125em;
               <button class="welcome-contact-name" type="button" aria-expanded="false" aria-controls="contact-campusrecruiting">Campus Recruiting</button>
               <div class="welcome-contact-popover" id="contact-campusrecruiting" hidden>
                 <strong class="welcome-contact-purpose">The hiring process</strong>
-                <a class="welcome-contact-email" href="mailto:campusrecruiting@example.com">campusrecruiting@example.com</a>
+                <a class="welcome-contact-email" href="mailto:campusrecruiting@pmg.com">campusrecruiting@pmg.com</a>
               <p>Reach out about applications, interviews, offers, and campus recruiting events.</p>
               </div>
             </li>
@@ -6782,7 +6782,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/robmccall-design\.github\.io\/glp-dallas-welcome\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
